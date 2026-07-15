@@ -63,10 +63,14 @@ Status:       SYSTEM ONLINE
 [06] Cybersecurity Notes
 ```
 ---
+---
 
 ## 📡 SYSTEM ACTIVITY
 
-<p align="center">
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=shadowmonachy&theme=chartreuse_dark" />
-  
-</p>
+```text
+STATUS:         ONLINE
+ACTIVE PATH:    CYBERSECURITY
+CURRENT MODE:   LEARNING AND BUILDING
+SPECIALISATION: NETWORKING • LINUX • PYTHON
+NEXT OBJECTIVE: PUBLISH PRACTICAL PROJECTS
+```
