@@ -20,3 +20,15 @@
 ![Networking](https://img.shields.io/badge/Networking-111111?style=for-the-badge&logo=cisco&logoColor=39FF14)
 
 </p>
+---
+
+## 👾 OPERATOR PROFILE
+
+```text
+Username:     shadowmonachy
+Location:     Pretoria, South Africa
+Current Path: Networking and Cybersecurity
+Learning:     Linux, Python, Cisco and Security Operations
+Goal:         Security Engineer / Purple Team
+Status:       SYSTEM ONLINE
+```
