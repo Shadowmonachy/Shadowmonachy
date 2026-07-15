@@ -8,8 +8,6 @@
 
 > Building skills. Running labs. Evolving through technology.
 
-</div>
-<p align="center">
 
 ![Cybersecurity](https://img.shields.io/badge/Cybersecurity-111111?style=for-the-badge&logo=hackthebox&logoColor=39FF14)
 
@@ -19,7 +17,7 @@
 
 ![Networking](https://img.shields.io/badge/Networking-111111?style=for-the-badge&logo=cisco&logoColor=39FF14)
 
-</p>
+</div>
 ---
 
 ## 👾 OPERATOR PROFILE
