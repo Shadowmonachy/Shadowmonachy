@@ -8,18 +8,18 @@
 
 > Building skills. Running labs. Evolving through technology.
 
-
-![Cybersecurity](https://img.shields.io/badge/Cybersecurity-111111?style=for-the-badge&logo=hackthebox&logoColor=39FF14)
-
-![Linux](https://img.shields.io/badge/Linux-111111?style=for-the-badge&logo=linux&logoColor=00E5FF)
-
-![Python](https://img.shields.io/badge/Python-111111?style=for-the-badge&logo=python&logoColor=8B5CF6)
-
-![Networking](https://img.shields.io/badge/Networking-111111?style=for-the-badge&logo=cisco&logoColor=39FF14)
-
 </div>
----
 
+___
+<p align="center">
+  <img src="https://img.shields.io/badge/CYBERSECURITY-111111?style=for-the-badge&logo=hackthebox&logoColor=39FF14" alt="Cybersecurity">
+  <img src="https://img.shields.io/badge/LINUX-111111?style=for-the-badge&logo=linux&logoColor=00E5FF" alt="Linux">
+  <img src="https://img.shields.io/badge/BASH-111111?style=for-the-badge&logo=gnubash&logoColor=39FF14" alt="Bash">
+  <img src="https://img.shields.io/badge/PYTHON-111111?style=for-the-badge&logo=python&logoColor=8B5CF6" alt="Python">
+  <img src="https://img.shields.io/badge/NETWORKING-111111?style=for-the-badge&logo=cisco&logoColor=39FF14" alt="Networking">
+</p>
+
+---
 ## 👾 OPERATOR PROFILE
 
 ```text
@@ -49,7 +49,6 @@ Status:       SYSTEM ONLINE
 
 </p>
 ---
-
 ## 🧪 ACTIVE LABS
 
 ```text
@@ -61,7 +60,6 @@ Status:       SYSTEM ONLINE
 [06] Cybersecurity Notes
 ```
 ---
-
 ## 📡 SYSTEM ACTIVITY
 
 <p align="center">
