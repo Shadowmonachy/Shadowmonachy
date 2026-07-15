@@ -63,4 +63,13 @@ Status:       SYSTEM ONLINE
 [06] Cybersecurity Notes
 ```
 ---
----
+
+## 📡 SYSTEM ACTIVITY
+
+<p align="center">
+  <img
+    src="./profile-card.svg"
+    width="100%"
+    alt="Shadowmonachy alien technology cybersecurity profile card"
+  />
+</p>
