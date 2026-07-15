@@ -1,0 +1,476 @@
+const fs = require("fs");
+
+const username = process.env.USERNAME || "shadowmonachy";
+const token = process.env.GITHUB_TOKEN;
+
+function escapeXml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+async function getGitHubProfile() {
+  const response = await fetch(`https://api.github.com/users/${username}`, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: token ? `Bearer ${token}` : "",
+      "User-Agent": "shadowmonachy-profile-card",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `GitHub API request failed: ${response.status} ${response.statusText}`
+    );
+  }
+
+  return response.json();
+}
+
+async function generateCard() {
+  const profile = await getGitHubProfile();
+
+  const displayName = escapeXml(
+    profile.name || username.toUpperCase()
+  );
+
+  const location = escapeXml(
+    profile.location || "Pretoria, South Africa"
+  );
+
+  const repositories = profile.public_repos ?? 0;
+  const followers = profile.followers ?? 0;
+  const following = profile.following ?? 0;
+
+  const updatedDate = new Date().toISOString().slice(0, 10);
+
+  const svg = `
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="500"
+  viewBox="0 0 1200 500"
+  role="img"
+  aria-labelledby="title description"
+>
+  <title id="title">Shadowmonachy Alien Technology Profile Card</title>
+
+  <desc id="description">
+    Futuristic cybersecurity profile card for ${displayName}.
+  </desc>
+
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#05060A"/>
+      <stop offset="55%" stop-color="#090D18"/>
+      <stop offset="100%" stop-color="#140A25"/>
+    </linearGradient>
+
+    <linearGradient id="alienLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#39FF14"/>
+      <stop offset="50%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+
+    <radialGradient id="alienCore">
+      <stop offset="0%" stop-color="#39FF14" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#00E5FF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#05060A" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="greenGlow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+
+    <pattern
+      id="grid"
+      width="40"
+      height="40"
+      patternUnits="userSpaceOnUse"
+    >
+      <path
+        d="M 40 0 L 0 0 0 40"
+        fill="none"
+        stroke="#00E5FF"
+        stroke-opacity="0.07"
+        stroke-width="1"
+      />
+    </pattern>
+
+    <style>
+      .mono {
+        font-family:
+          "SFMono-Regular",
+          Consolas,
+          "Liberation Mono",
+          monospace;
+      }
+
+      .main-title {
+        font-size: 54px;
+        font-weight: 800;
+        letter-spacing: 5px;
+        fill: #E6EDF3;
+      }
+
+      .subtitle {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        fill: #39FF14;
+      }
+
+      .label {
+        font-size: 14px;
+        letter-spacing: 2px;
+        fill: #7D8590;
+      }
+
+      .value {
+        font-size: 22px;
+        font-weight: 700;
+        fill: #E6EDF3;
+      }
+
+      .stat-number {
+        font-size: 30px;
+        font-weight: 800;
+        fill: #00E5FF;
+      }
+
+      .stat-label {
+        font-size: 13px;
+        letter-spacing: 2px;
+        fill: #A9B1D6;
+      }
+
+      .terminal {
+        font-size: 15px;
+        fill: #39FF14;
+      }
+    </style>
+  </defs>
+
+  <!-- Main background -->
+  <rect
+    x="0"
+    y="0"
+    width="1200"
+    height="500"
+    rx="28"
+    fill="url(#background)"
+  />
+
+  <rect
+    x="0"
+    y="0"
+    width="1200"
+    height="500"
+    rx="28"
+    fill="url(#grid)"
+  />
+
+  <!-- Background glow -->
+  <circle
+    cx="1030"
+    cy="80"
+    r="240"
+    fill="url(#alienCore)"
+    filter="url(#softGlow)"
+  />
+
+  <!-- Main border -->
+  <rect
+    x="10"
+    y="10"
+    width="1180"
+    height="480"
+    rx="22"
+    fill="none"
+    stroke="url(#alienLine)"
+    stroke-width="3"
+  />
+
+  <!-- Top system bar -->
+  <circle cx="48" cy="44" r="7" fill="#39FF14"/>
+  <circle cx="72" cy="44" r="7" fill="#00E5FF"/>
+  <circle cx="96" cy="44" r="7" fill="#8B5CF6"/>
+
+  <text
+    x="125"
+    y="50"
+    class="mono label"
+  >
+    ALIEN SECURITY TERMINAL // NODE 01
+  </text>
+
+  <text
+    x="1145"
+    y="50"
+    text-anchor="end"
+    class="mono terminal"
+  >
+    ● ONLINE
+  </text>
+
+  <line
+    x1="35"
+    y1="72"
+    x2="1165"
+    y2="72"
+    stroke="url(#alienLine)"
+    stroke-opacity="0.7"
+  />
+
+  <!-- Alien icon -->
+  <g transform="translate(65 122)">
+    <ellipse
+      cx="112"
+      cy="105"
+      rx="90"
+      ry="105"
+      fill="#080D12"
+      stroke="#39FF14"
+      stroke-width="4"
+      filter="url(#greenGlow)"
+    />
+
+    <ellipse
+      cx="78"
+      cy="93"
+      rx="25"
+      ry="42"
+      transform="rotate(-20 78 93)"
+      fill="#00E5FF"
+      opacity="0.9"
+    />
+
+    <ellipse
+      cx="146"
+      cy="93"
+      rx="25"
+      ry="42"
+      transform="rotate(20 146 93)"
+      fill="#00E5FF"
+      opacity="0.9"
+    />
+
+    <path
+      d="M88 160 Q112 174 136 160"
+      fill="none"
+      stroke="#8B5CF6"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+
+    <circle
+      cx="112"
+      cy="105"
+      r="120"
+      fill="none"
+      stroke="#8B5CF6"
+      stroke-dasharray="6 16"
+      stroke-opacity="0.6"
+    />
+  </g>
+
+  <!-- Identity -->
+  <text
+    x="355"
+    y="145"
+    class="mono subtitle"
+  >
+    CYBERSECURITY OPERATIVE
+  </text>
+
+  <text
+    x="350"
+    y="210"
+    class="mono main-title"
+  >
+    ${displayName.toUpperCase()}
+  </text>
+
+  <text
+    x="355"
+    y="249"
+    class="mono label"
+  >
+    @${escapeXml(username)} // ${location}
+  </text>
+
+  <!-- Skills -->
+  <g transform="translate(355 285)">
+    <rect
+      x="0"
+      y="0"
+      width="155"
+      height="42"
+      rx="8"
+      fill="#39FF14"
+      fill-opacity="0.08"
+      stroke="#39FF14"
+    />
+    <text
+      x="77"
+      y="27"
+      text-anchor="middle"
+      class="mono terminal"
+    >
+      NETWORKING
+    </text>
+
+    <rect
+      x="170"
+      y="0"
+      width="115"
+      height="42"
+      rx="8"
+      fill="#00E5FF"
+      fill-opacity="0.08"
+      stroke="#00E5FF"
+    />
+    <text
+      x="227"
+      y="27"
+      text-anchor="middle"
+      class="mono"
+      font-size="15"
+      fill="#00E5FF"
+    >
+      LINUX
+    </text>
+
+    <rect
+      x="300"
+      y="0"
+      width="120"
+      height="42"
+      rx="8"
+      fill="#8B5CF6"
+      fill-opacity="0.1"
+      stroke="#8B5CF6"
+    />
+    <text
+      x="360"
+      y="27"
+      text-anchor="middle"
+      class="mono"
+      font-size="15"
+      fill="#B99AFF"
+    >
+      PYTHON
+    </text>
+
+    <rect
+      x="435"
+      y="0"
+      width="190"
+      height="42"
+      rx="8"
+      fill="#39FF14"
+      fill-opacity="0.08"
+      stroke="#39FF14"
+    />
+    <text
+      x="530"
+      y="27"
+      text-anchor="middle"
+      class="mono terminal"
+    >
+      BLUE TEAM
+    </text>
+  </g>
+
+  <!-- Statistics -->
+  <g transform="translate(355 365)">
+    <text x="0" y="0" class="mono stat-number">
+      ${repositories}
+    </text>
+    <text x="0" y="24" class="mono stat-label">
+      REPOSITORIES
+    </text>
+
+    <line
+      x1="170"
+      y1="-25"
+      x2="170"
+      y2="35"
+      stroke="#253044"
+    />
+
+    <text x="210" y="0" class="mono stat-number">
+      ${followers}
+    </text>
+    <text x="210" y="24" class="mono stat-label">
+      FOLLOWERS
+    </text>
+
+    <line
+      x1="375"
+      y1="-25"
+      x2="375"
+      y2="35"
+      stroke="#253044"
+    />
+
+    <text x="415" y="0" class="mono stat-number">
+      ${following}
+    </text>
+    <text x="415" y="24" class="mono stat-label">
+      FOLLOWING
+    </text>
+  </g>
+
+  <!-- Bottom terminal message -->
+  <rect
+    x="35"
+    y="447"
+    width="1130"
+    height="28"
+    rx="5"
+    fill="#020408"
+    stroke="#253044"
+  />
+
+  <text
+    x="52"
+    y="466"
+    class="mono terminal"
+  >
+    &gt; BUILDING SKILLS // RUNNING LABS // EVOLVING THROUGH TECHNOLOGY_
+  </text>
+
+  <text
+    x="1148"
+    y="466"
+    text-anchor="end"
+    class="mono label"
+  >
+    UPDATED ${updatedDate}
+  </text>
+</svg>
+`;
+
+  fs.writeFileSync("profile-card.svg", svg.trim(), "utf8");
+
+  console.log("Generated profile-card.svg successfully.");
+}
+
+generateCard().catch((error) => {
+  console.error("Failed to generate profile card:");
+  console.error(error);
+  process.exit(1);
+});
