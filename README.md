@@ -1,16 +1,22 @@
-## Hi there 👋
+<div align="center">
 
-<!--
-**Shadowmonachy/Shadowmonachy** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+# 👽 SHADOWMONACHY
 
-Here are some ideas to get you started:
+### `SYSTEM ONLINE`
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+**Cybersecurity Learner • Networking • Linux • Python**
+
+> Building skills. Running labs. Evolving through technology.
+
+</div>
+<p align="center">
+
+![Cybersecurity](https://img.shields.io/badge/Cybersecurity-111111?style=for-the-badge&logo=hackthebox&logoColor=39FF14)
+
+![Linux](https://img.shields.io/badge/Linux-111111?style=for-the-badge&logo=linux&logoColor=00E5FF)
+
+![Python](https://img.shields.io/badge/Python-111111?style=for-the-badge&logo=python&logoColor=8B5CF6)
+
+![Networking](https://img.shields.io/badge/Networking-111111?style=for-the-badge&logo=cisco&logoColor=39FF14)
+
+</p>
