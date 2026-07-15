@@ -32,3 +32,42 @@ Learning:     Linux, Python, Cisco and Security Operations
 Goal:         Security Engineer / Purple Team
 Status:       SYSTEM ONLINE
 ```
+---
+
+## 🛸 CURRENT MISSIONS
+
+- Learning networking from first principles
+- Practising Linux and Bash commands
+- Building Python skills
+- Creating Cisco Packet Tracer labs
+- Developing cybersecurity and blue-team knowledge
+- Working toward becoming a Security Engineer
+  ---
+## ⚡ TECHNOLOGY ARSENAL
+
+<p align="center">
+
+<img src="https://skillicons.dev/icons?i=linux,python,bash,git,vscode,ubuntu" />
+
+</p>
+---
+
+## 🧪 ACTIVE LABS
+
+```text
+[01] Cisco Packet Tracer Projects
+[02] Linux Terminal Drills
+[03] Python Practice
+[04] Wireshark Traffic Analysis
+[05] Networking Fundamentals
+[06] Cybersecurity Notes
+```
+---
+
+## 📡 SYSTEM ACTIVITY
+
+<p align="center">
+
+<img src="https://github-readme-stats.vercel.app/api?username=shadowmonachy&show_icons=true&theme=chartreuse-dark&hide_border=true" />
+
+</p>
