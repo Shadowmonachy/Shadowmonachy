@@ -68,4 +68,5 @@ Status:       SYSTEM ONLINE
 
 <p align="center">
 <<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=shadowmonachy&theme=chartreuse_dark" //>
+  
 </p>
