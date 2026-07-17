@@ -346,7 +346,7 @@
   <!-- Statistics -->
   <g transform="translate(355 365)">
     <text x="0" y="0" class="mono stat-number">
-      4
+      3
     </text>
     <text x="0" y="24" class="mono stat-label">
       REPOSITORIES
@@ -408,6 +408,6 @@
     text-anchor="end"
     class="mono label"
   >
-    UPDATED 2026-07-16
+    UPDATED 2026-07-17
   </text>
 </svg>
